@@ -15,7 +15,7 @@ Guidelines
 
 from __future__ import annotations
 
-from src.config import FINAL_TOP_K
+from config import settings
 from src.core.candidate import Candidate
 
 
@@ -30,7 +30,7 @@ class FinalRanker:
         cross_scores: list[float],
         feature_scores: list[float],
         final_scores: list[float],
-        top_k: int = FINAL_TOP_K,
+        top_k: int = settings.ranking.ranking.final_top_k,
     ) -> list[Candidate]:
         """
         Rank candidates using the final fused scores.

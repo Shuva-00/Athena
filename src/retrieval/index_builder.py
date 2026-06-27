@@ -13,7 +13,7 @@ import faiss
 import numpy as np
 from rank_bm25 import BM25Okapi
 
-from src.config import NORMALIZE_EMBEDDINGS
+from config import settings
 from src.retrieval.candidate_encoder import CandidateEncoder
 
 
@@ -63,7 +63,7 @@ class IndexBuilder:
             np.float32
         )
 
-        if NORMALIZE_EMBEDDINGS:
+        if settings.retrieval.dense.normalize_embeddings:
             faiss.normalize_L2(embeddings)
 
         dimension = embeddings.shape[1]

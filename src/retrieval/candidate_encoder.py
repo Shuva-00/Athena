@@ -18,14 +18,14 @@ from __future__ import annotations
 
 from sentence_transformers import SentenceTransformer
 import numpy as np
-from src.config.settings import EMBEDDING_MODEL
+from config import settings
 
 class CandidateEncoder:
     """
     Dense embedding encoder.
     """
 
-    MODEL_NAME = EMBEDDING_MODEL
+    MODEL_NAME = settings.models.embedding.model_name
 
     def __init__(self) -> None:
 
@@ -43,7 +43,7 @@ class CandidateEncoder:
 
         embedding = self.model.encode(
             text,
-            normalize_embeddings=True,
+            normalize_embeddings=settings.retrieval.dense.normalize_embeddings,
             convert_to_numpy=True,
         )
 
@@ -59,7 +59,7 @@ class CandidateEncoder:
 
         embeddings = self.model.encode(
             texts,
-            normalize_embeddings=True,
+            normalize_embeddings=settings.retrieval.dense.normalize_embeddings,
             convert_to_numpy=True,
             show_progress_bar=True,
         )

@@ -14,11 +14,7 @@ Guidelines
 """
 
 from __future__ import annotations
-
-from src.config import (
-    CROSS_ENCODER_WEIGHT,
-    FEATURE_WEIGHT,
-)
+from config import settings
 
 
 class ScoreFusion:
@@ -50,8 +46,8 @@ class ScoreFusion:
         ):
 
             score = (
-                CROSS_ENCODER_WEIGHT * cross_score
-                + FEATURE_WEIGHT * feature_score
+                settings.weights.fusion.cross_encoder * cross_score
+                + settings.weights.fusion.feature_encoder * feature_score
             )
 
             fused_scores.append(score)

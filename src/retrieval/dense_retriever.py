@@ -12,7 +12,7 @@ from __future__ import annotations
 import faiss
 import numpy as np
 
-from src.config import DENSE_TOP_K
+from config import settings
 from src.retrieval.candidate_encoder import CandidateEncoder
 
 
@@ -30,7 +30,7 @@ class DenseRetriever:
         query: str,
         faiss_index: faiss.Index,
         candidate_ids: list[str],
-        top_k: int = DENSE_TOP_K,
+        top_k: int = settings.retrieval.dense.top_k,
     ) -> list[tuple[str, float]]:
         """
         Retrieve top candidates using dense retrieval.

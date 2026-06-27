@@ -18,7 +18,7 @@ from __future__ import annotations
 
 from sentence_transformers import CrossEncoder
 
-from src.config import CROSS_ENCODER_MODEL
+from config import settings
 
 
 class CrossEncoderRanker:
@@ -29,7 +29,7 @@ class CrossEncoderRanker:
     def __init__(self) -> None:
 
         self.model = CrossEncoder(
-            CROSS_ENCODER_MODEL
+            settings.models.cross_encoder.model_name
         )
 
     def score(

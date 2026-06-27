@@ -16,11 +16,8 @@ Guidelines
 
 from __future__ import annotations
 
+from config import settings
 from src.core.candidate.evidence import EvidenceCollection
-from src.config import (
-    MIN_STRONG_SKILL_MATCH,
-    MIN_STRONG_TECH_MATCH,
-)
 
 class EvidenceAnalyzer:
     """
@@ -39,12 +36,12 @@ class EvidenceAnalyzer:
         # Strengths
         #######################################################################
 
-        if len(evidence.matched_skills) >= MIN_STRONG_SKILL_MATCH:
+        if len(evidence.matched_skills) >=settings.features.thresholds.minimum_strong_skill_match:
             evidence.strengths.append(
                 "Strong skill alignment with the job requirements."
             )
 
-        if len(evidence.matched_technologies) >= MIN_STRONG_TECH_MATCH:
+        if len(evidence.matched_technologies) >= settings.features.thresholds.minimum_strong_technology_match:
             evidence.strengths.append(
                 "Strong technology stack alignment."
             )

@@ -15,13 +15,7 @@ Guidelines
 """
 
 from __future__ import annotations
-from src.config import (
-    SKILL_MATCH_WEIGHT,
-    EXPERIENCE_WEIGHT,
-    PROJECT_WEIGHT,
-    CERTIFICATION_WEIGHT,
-    TECHNOLOGY_WEIGHT,
-)
+from config import settings
 import re
 
 from src.core.candidate import Candidate
@@ -66,23 +60,23 @@ class FeatureScorer:
 
         score = 0.0
 
-        score += skill_overlap * SKILL_MATCH_WEIGHT
+        score += skill_overlap * settings.weights.features.skill_match
 
         score += (
     features["total_experience_months"] / 12
-) * EXPERIENCE_WEIGHT
+) * settings.weights.features.experience
 
         score += (
     features["project_count"]
-) * PROJECT_WEIGHT
+) * settings.weights.features.project_count
 
         score += (
     features["certification_count"]
-) * CERTIFICATION_WEIGHT
+) * settings.weights.features.certification_count
 
         score += (
     features["technology_diversity"]
-) * TECHNOLOGY_WEIGHT
+) * settings.weights.features.technology_diversity
 
         return score
 

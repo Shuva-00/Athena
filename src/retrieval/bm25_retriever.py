@@ -11,7 +11,7 @@ from __future__ import annotations
 
 from rank_bm25 import BM25Okapi
 
-from src.config import BM25_TOP_K
+from config import settings
 
 
 class BM25Retriever:
@@ -24,7 +24,7 @@ class BM25Retriever:
         query: str,
         bm25: BM25Okapi,
         candidate_ids: list[str],
-        top_k: int = BM25_TOP_K,
+        top_k: int = settings.retrieval.bm25.top_k,
     ) -> list[tuple[str, float]]:
         """
         Retrieve top candidates using BM25.

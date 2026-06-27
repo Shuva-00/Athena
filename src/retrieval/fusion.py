@@ -16,8 +16,7 @@ from __future__ import annotations
 
 from collections import defaultdict
 
-from src.config import FINAL_RETRIEVAL_TOP_K
-from src.config import RRF_K
+from config import settings
 
 
 class Fusion:
@@ -28,7 +27,7 @@ class Fusion:
     def fuse(
         self,
         *rankings: list[tuple[str, float]],
-        top_k: int = FINAL_RETRIEVAL_TOP_K,
+        top_k: int = settings.retrieval.fusion.final_top_k,
     ) -> list[tuple[str, float]]:
         """
         Fuse multiple ranked lists.
@@ -44,7 +43,7 @@ class Fusion:
             ):
 
                 scores[candidate_id] += 1.0 / (
-                    RRF_K + rank
+                    settings.retrieval.fusion.rrf_k + rank
                 )
 
         fused = sorted(
