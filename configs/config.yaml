@@ -1,0 +1,50 @@
+###############################################################################
+# Athena
+# Master Configuration
+###############################################################################
+
+project:
+  name: Athena
+  version: 0.1.0
+  description: Explainable Hybrid AI Candidate Ranking System
+
+###############################################################################
+# Environment
+###############################################################################
+
+environment:
+  mode: development
+  random_seed: 42
+
+###############################################################################
+# Pipeline
+###############################################################################
+
+pipeline:
+  enable_preprocessing: true
+  enable_retrieval: true
+  enable_ranking: true
+  enable_reasoning: true
+  enable_submission: true
+  enable_evaluation: true
+  enable_benchmark: true
+
+###############################################################################
+# Evaluation
+###############################################################################
+
+evaluation:
+  default_k: 10
+
+###############################################################################
+# Configuration Files
+###############################################################################
+
+configuration:
+  models: configs/models.yaml
+  weights: configs/weights.yaml
+  retrieval: configs/retrieval.yaml
+  ranking: configs/ranking.yaml
+  features: configs/features.yaml
+  paths: configs/paths.yaml
+  logging: configs/logging.yaml
