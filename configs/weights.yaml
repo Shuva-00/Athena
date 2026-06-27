@@ -18,13 +18,8 @@ fusion:
 ###############################################################################
 
 features:
-
   skill_match: 0.30
-
   experience: 0.20
-
   project: 0.15
-
   technology: 0.20
-
   certification: 0.15

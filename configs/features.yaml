@@ -56,3 +56,36 @@ thresholds:
   minimum_strong_skill_match: 3
 
   minimum_strong_technology_match: 2
+  
+  
+features:
+
+  extraction:
+
+    extract_keywords: true
+
+    extract_technologies: true
+
+    extract_achievements: true
+
+  experience:
+
+    count_total_months: true
+
+  projects:
+
+    count_projects: true
+
+  technologies:
+
+    calculate_diversity: true
+
+  certifications:
+
+    count_certifications: true
+
+  thresholds:
+
+    minimum_strong_skill_match: 3
+
+    minimum_strong_technology_match: 2

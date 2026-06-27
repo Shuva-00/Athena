@@ -4,45 +4,11 @@ Package : Configuration
 
 Purpose
 -------
-Public exports for project configuration.
+Public exports for Athena configuration.
 """
 
-from .settings import (
-    BM25_TOP_K,
-    DENSE_TOP_K,
-    EMBEDDING_MODEL,
-    FAISS_METRIC,
-    FINAL_RETRIEVAL_TOP_K,
-    MAX_PROJECTS_PER_EXPERIENCE,
-    MIN_PROJECT_SENTENCE_LENGTH,
-    NORMALIZE_EMBEDDINGS,
-    RANDOM_SEED,
-    RRF_K,
-    CROSS_ENCODER_WEIGHT,
-    FEATURE_WEIGHT,
-    MIN_STRONG_SKILL_MATCH,
-    MIN_STRONG_TECH_MATCH,
-    CROSS_ENCODER_MODEL,
-    RERANK_INPUT_SIZE,
-
-    
-)
+from .settings import settings
 
 __all__ = [
-    "EMBEDDING_MODEL",
-    "BM25_TOP_K",
-    "DENSE_TOP_K",
-    "FINAL_RETRIEVAL_TOP_K",
-    "RRF_K",
-    "FAISS_METRIC",
-    "NORMALIZE_EMBEDDINGS",
-    "MIN_PROJECT_SENTENCE_LENGTH",
-    "MAX_PROJECTS_PER_EXPERIENCE",
-    "RANDOM_SEED",
-    "CROSS_ENCODER_WEIGHT",
-    "FEATURE_WEIGHT",
-    "MIN_STRONG_SKILL_MATCH",
-    "MIN_STRONG_TECH_MATCH",
-    "CROSS_ENCODER_MODEL",
-    "RERANK_INPUT_SIZE",
+    "settings",
 ]

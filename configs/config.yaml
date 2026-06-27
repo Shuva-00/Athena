@@ -28,6 +28,9 @@ pipeline:
   enable_submission: true
   enable_evaluation: true
   enable_benchmark: true
+  build_bm25_index: true
+  build_dense_index: true
+  enable_hybrid_retrieval: true
 
 ###############################################################################
 # Evaluation
