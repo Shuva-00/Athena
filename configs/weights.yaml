@@ -17,9 +17,56 @@ fusion:
 # Feature Engineering
 ###############################################################################
 
-features:
-  skill_match: 0.30
-  experience: 0.20
-  project: 0.15
-  technology: 0.20
-  certification: 0.15
+feature_scoring:
+
+  skill:
+
+    matching: 0.45
+
+    proficiency: 0.20
+
+    duration: 0.20
+
+    endorsement: 0.15
+
+  experience:
+
+    relevance: 0.40
+
+    progression: 0.25
+
+    stability: 0.20
+
+    leadership: 0.15
+
+  education:
+
+    relevance: 0.60
+
+    research: 0.40
+
+  certification:
+
+    relevance: 0.70
+
+    recency: 0.30
+
+  signal:
+
+    responsiveness: 0.30
+
+    engagement: 0.30
+
+    assessment: 0.40
+
+  integrity:
+
+    consistency: 0.50
+
+    confidence: 0.50
+
+normalization:
+
+  duration_cap_months: 60
+
+  endorsement_cap: 20

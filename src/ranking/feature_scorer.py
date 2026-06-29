@@ -4,83 +4,59 @@ Module  : Feature Scorer
 
 Purpose
 -------
-Computes a deterministic feature-based relevance score
-between a candidate and a job description.
+Computes normalized feature scores for a candidate.
 
 Guidelines
 ----------
-- Uses engineered features.
-- No ML models.
-- No embeddings.
+- Orchestrates individual feature scorers.
+- Does not implement scoring logic itself.
+- Updates candidate.feature_scores.
 """
 
 from __future__ import annotations
-from config import settings
-import re
 
-from src.core.candidate import Candidate
+from src.core.candidate.entity import Candidate
+
+from src.ranking.scorers.skill_scorer import SkillScorer
 
 
 class FeatureScorer:
     """
-    Scores candidates using engineered features.
+    Computes all normalized feature scores.
     """
 
-    WORD_PATTERN = re.compile(r"[A-Za-z0-9+#.]+")
+    def __init__(self) -> None:
+
+        self.skill_scorer = SkillScorer()
+
+    ###########################################################################
+    # Public API
+    ###########################################################################
 
     def score(
         self,
-        job_description: str,
         candidate: Candidate,
-    ) -> float:
+    ) -> None:
         """
-        Compute feature score.
+        Compute all candidate feature scores.
         """
 
-        features = candidate.metadata.get(
-            "features",
-            {},
-        )
+        self._score_skills(candidate)
 
-        jd_words = {
-            word.lower()
-            for word in self.WORD_PATTERN.findall(
-                job_description
+    ###########################################################################
+    # Private Helpers
+    ###########################################################################
+
+    def _score_skills(
+        self,
+        candidate: Candidate,
+    ) -> None:
+        """
+        Compute skill feature score.
+        """
+
+        candidate.feature_scores.skill_score = (
+            self.skill_scorer.score(
+                candidate.evidence.skill,
             )
-        }
-
-        candidate_skills = {
-            skill.name.lower()
-            for skill in candidate.skills
-        }
-
-        skill_overlap = len(
-            jd_words.intersection(candidate_skills)
         )
-
-        score = 0.0
-
-        score += skill_overlap * settings.weights.features.skill_match
-
-        score += (
-    features["total_experience_months"] / 12
-) * settings.weights.features.experience
-
-        score += (
-    features["project_count"]
-) * settings.weights.features.project_count
-
-        score += (
-    features["certification_count"]
-) * settings.weights.features.certification_count
-
-        score += (
-    features["technology_diversity"]
-) * settings.weights.features.technology_diversity
-
-        return score
-
-
-###############################################################################
-# END OF FILE
-###############################################################################

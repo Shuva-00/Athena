@@ -1,18 +1,6 @@
 """
 Project : Athena
-Module  : Education Evidence
-
-Purpose
--------
-Stores all factual evidence extracted from a candidate's educational
-background.
-
-Guidelines
-----------
-- Pure domain model.
-- No business logic.
-- No scoring logic.
-- No inference logic.
+Module  : Signal Evidence
 """
 
 from __future__ import annotations
@@ -22,60 +10,61 @@ from pydantic import Field
 from src.core.model import AthenaModel
 
 
-class EducationEvidence(AthenaModel):
+class SignalEvidence(AthenaModel):
     """
-    Stores education-related evidence.
+    Stores recruiter-facing candidate signals.
     """
 
     ###########################################################################
-    # Degree Information
+    # Availability
     ###########################################################################
 
-    highest_degree: str | None = Field(
-        default=None,
-        description="Highest educational qualification.",
-    )
-
-    degree_match: bool = Field(
-        default=False,
-        description="Whether the degree satisfies the job requirement.",
-    )
-
-    ###########################################################################
-    # Academic Performance
-    ###########################################################################
-
-    cgpa: float | None = Field(
-        default=None,
-        ge=0.0,
-        description="Candidate CGPA if available.",
-    )
-
-    academic_score: float = Field(
+    availability_score: float = Field(
         default=0.0,
         ge=0.0,
         le=1.0,
-        description="Normalized academic score.",
     )
 
     ###########################################################################
-    # Institution
+    # Assessment
     ###########################################################################
 
-    institution_relevance: float = Field(
+    assessment_score: float = Field(
         default=0.0,
         ge=0.0,
         le=1.0,
-        description="Institution relevance score.",
     )
 
     ###########################################################################
-    # Research
+    # Engagement
     ###########################################################################
 
-    research_experience: bool = Field(
-        default=False,
-        description="Whether research experience exists.",
+    github_score: float = Field(
+        default=0.0,
+        ge=0.0,
+        le=1.0,
+    )
+
+    linkedin_score: float = Field(
+        default=0.0,
+        ge=0.0,
+        le=1.0,
+    )
+
+    portfolio_score: float = Field(
+        default=0.0,
+        ge=0.0,
+        le=1.0,
+    )
+
+    ###########################################################################
+    # Responsiveness
+    ###########################################################################
+
+    responsiveness_score: float = Field(
+        default=0.0,
+        ge=0.0,
+        le=1.0,
     )
 
     ###########################################################################
@@ -86,7 +75,6 @@ class EducationEvidence(AthenaModel):
         default=0.0,
         ge=0.0,
         le=1.0,
-        description="Confidence in extracted education evidence.",
     )
 
     ###########################################################################

@@ -1,47 +1,154 @@
+"""
+Project : Athena
+Module  : Experience Evidence
+
+Purpose
+-------
+Stores all factual evidence extracted from a candidate's professional
+experience.
+
+Guidelines
+----------
+- Pure domain model.
+- No business logic.
+- No scoring logic.
+- No inference logic.
+- Stores evidence only.
+"""
+
 from __future__ import annotations
 
-from pydantic import BaseModel
-from pydantic import ConfigDict
+from pydantic import Field
+
+from src.core.model import AthenaModel
 
 
-class ExperienceEvidence(BaseModel):
+class ExperienceEvidence(AthenaModel):
     """
-    Raw evidence extracted from candidate work experience.
+    Stores experience-related evidence collected during feature extraction.
     """
 
-    model_config = ConfigDict(
-        frozen=False,
-        extra="forbid",
+    ###########################################################################
+    # Overall Experience
+    ###########################################################################
+
+    total_experience_months: int = Field(
+        default=0,
+        ge=0,
+        description="Total professional experience in months.",
     )
 
-    total_experience_months: int = 0
+    relevant_experience_months: int = Field(
+        default=0,
+        ge=0,
+        description="Relevant experience matching the job description.",
+    )
 
-    relevant_experience_months: int = 0
+    recent_experience_months: int = Field(
+        default=0,
+        ge=0,
+        description="Recent relevant experience.",
+    )
 
-    current_role_match: bool = False
+    ###########################################################################
+    # Career Progression
+    ###########################################################################
 
-    promotion_count: int = 0
+    career_progression_score: float = Field(
+        default=0.0,
+        ge=0.0,
+        le=1.0,
+        description="Normalized career progression score.",
+    )
 
-    lateral_move_count: int = 0
+    leadership_experience_months: int = Field(
+        default=0,
+        ge=0,
+        description="Leadership or management experience.",
+    )
 
-    job_hop_count: int = 0
+    ###########################################################################
+    # Employment Quality
+    ###########################################################################
 
-    average_job_tenure_months: float = 0.0
+    company_relevance_score: float = Field(
+        default=0.0,
+        ge=0.0,
+        le=1.0,
+        description="Relevance of companies to the target role.",
+    )
 
-    longest_job_tenure_months: int = 0
+    stability_score: float = Field(
+        default=0.0,
+        ge=0.0,
+        le=1.0,
+        description="Employment stability score.",
+    )
 
-    shortest_job_tenure_months: int = 0
+    employment_gap_months: int = Field(
+        default=0,
+        ge=0,
+        description="Total employment gaps in months.",
+    )
 
-    employment_gap_months: int = 0
+    ###########################################################################
+    # Technical Relevance
+    ###########################################################################
 
-    relevant_company_count: int = 0
+    relevant_projects: list[str] = Field(
+        default_factory=list,
+        description="Projects supporting relevant experience.",
+    )
 
-    leadership_roles: int = 0
+    relevant_roles: list[str] = Field(
+        default_factory=list,
+        description="Relevant job titles.",
+    )
 
-    senior_titles: int = 0
+    relevant_domains: list[str] = Field(
+        default_factory=list,
+        description="Relevant business domains.",
+    )
 
-    management_roles: int = 0
+    ###########################################################################
+    # Semantic Matching
+    ###########################################################################
 
-    startup_experience: int = 0
+    semantic_title_similarity: float = Field(
+        default=0.0,
+        ge=0.0,
+        le=1.0,
+        description="Semantic similarity between candidate titles and target role.",
+    )
 
-    enterprise_experience: int = 0
+    semantic_responsibility_similarity: float = Field(
+        default=0.0,
+        ge=0.0,
+        le=1.0,
+        description="Semantic similarity between responsibilities.",
+    )
+
+    ###########################################################################
+    # Confidence
+    ###########################################################################
+
+    confidence: float = Field(
+        default=0.0,
+        ge=0.0,
+        le=1.0,
+        description="Confidence in extracted experience evidence.",
+    )
+
+    ###########################################################################
+    # Explainability
+    ###########################################################################
+
+    strengths: list[str] = Field(
+        default_factory=list,
+        description="Experience strengths supporting the ranking.",
+    )
+
+    concerns: list[str] = Field(
+        default_factory=list,
+        description="Experience concerns affecting the ranking.",
+    )

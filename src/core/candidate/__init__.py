@@ -7,18 +7,41 @@ Purpose
 Public exports for the Candidate domain.
 """
 
-from .certifications import Certification
-from .education import Education
 from .entity import Candidate
-from .evidence import EvidenceCollection
-from .experiences import Experience
-from .languages import Language
+
 from .profile import CandidateProfile
+
+from .education import Education
+
+from .experiences import Experience
+
 from .projects import Project
-from .scores import CandidateScores
-from .signals import CandidateSignals, SalaryRange
+
 from .skills import Skill
 
+from .languages import Language
+
+from .certifications import Certification
+
+from .signals import CandidateSignals
+
+from .scores import CandidateScores
+
+from .features import CandidateFeatures
+
+from .evidence import EvidenceCollection
+
+from .skill_evidence import SkillEvidence
+
+from .experience_evidence import ExperienceEvidence
+
+from .education_evidence import EducationEvidence
+
+from .certification_evidence import CertificationEvidence
+
+from .signal_evidence import SignalEvidence
+
+from .integrity_evidence import IntegrityEvidence
 __all__ = [
     "Candidate",
     "CandidateProfile",
@@ -32,4 +55,11 @@ __all__ = [
     "SalaryRange",
     "CandidateScores",
     "EvidenceCollection",
+    "CandidateFeatures",
+    "SkillEvidence",
+    "ExperienceEvidence",
+    "EducationEvidence",
+    "CertificationEvidence",
+    "SignalEvidence",
+    "IntegrityEvidence",
 ]

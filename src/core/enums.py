@@ -14,7 +14,6 @@ Notes
 """
 
 from __future__ import annotations
-
 from enum import Enum
 
 
@@ -55,7 +54,6 @@ class EvidenceSource(str, Enum):
     GITHUB = "GITHUB"
     PORTFOLIO = "PORTFOLIO"
     INFERENCE = "INFERENCE"
-    source: EvidenceSource
 
 class RequirementType(str, Enum):
     MANDATORY = "MANDATORY"
@@ -88,6 +86,17 @@ class DegreeLevel(str, Enum):
     CERTIFICATE = "CERTIFICATE"
     OTHER = "OTHER"
 
+class InstitutionTier(str, Enum):
+    """
+    Relative reputation tier of an educational institution.
+
+    Used only as one signal among many during education scoring.
+    """
+
+    TIER_1 = "TIER_1"
+    TIER_2 = "TIER_2"
+    TIER_3 = "TIER_3"
+    UNKNOWN = "UNKNOWN"
 ###############################################################################
 # SCORE
 ###############################################################################

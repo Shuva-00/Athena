@@ -1,18 +1,10 @@
 """
 Project : Athena
-Module  : Candidate Evidence
+Module  : Evidence Collection
 
 Purpose
 -------
-Stores all factual evidence gathered during retrieval and ranking
-that is later used to generate explainable reasoning.
-
-Guidelines
-----------
-- Pure domain model.
-- No business logic.
-- No inference logic.
-- Stores evidence only.
+Aggregates all evidence models for a candidate.
 """
 
 from __future__ import annotations
@@ -21,106 +13,39 @@ from pydantic import Field
 
 from src.core.model import AthenaModel
 
+from src.core.candidate.skill_evidence import SkillEvidence
+from src.core.candidate.experience_evidence import ExperienceEvidence
+from src.core.candidate.education_evidence import EducationEvidence
+from src.core.candidate.certification_evidence import CertificationEvidence
+from src.core.candidate.signal_evidence import SignalEvidence
+from src.core.candidate.integrity_evidence import IntegrityEvidence
+
 
 class EvidenceCollection(AthenaModel):
     """
-    Stores explainability evidence for a candidate.
+    Aggregate root for all candidate evidence.
     """
 
-    ###########################################################################
-    # Raw Evidence
-    ###########################################################################
-
-    facts: list[str] = Field(
-        default_factory=list,
-        description="Raw factual evidence extracted from the candidate profile.",
+    skill: SkillEvidence = Field(
+        default_factory=SkillEvidence,
     )
 
-    ###########################################################################
-    # Skill Evidence
-    ###########################################################################
-
-    matched_skills: list[str] = Field(
-        default_factory=list,
-        description="Skills matching the job requirements.",
+    experience: ExperienceEvidence = Field(
+        default_factory=ExperienceEvidence,
     )
 
-    missing_skills: list[str] = Field(
-        default_factory=list,
-        description="Required skills missing from the candidate profile.",
+    education: EducationEvidence = Field(
+        default_factory=EducationEvidence,
     )
 
-    ###########################################################################
-    # Technology Evidence
-    ###########################################################################
-
-    matched_technologies: list[str] = Field(
-        default_factory=list,
-        description="Technologies matching the job description.",
+    certification: CertificationEvidence = Field(
+        default_factory=CertificationEvidence,
     )
 
-    missing_technologies: list[str] = Field(
-        default_factory=list,
-        description="Technologies required but not found.",
+    signal: SignalEvidence = Field(
+        default_factory=SignalEvidence,
     )
 
-    ###########################################################################
-    # Certification Evidence
-    ###########################################################################
-
-    matched_certifications: list[str] = Field(
-        default_factory=list,
-        description="Matching certifications.",
+    integrity: IntegrityEvidence = Field(
+        default_factory=IntegrityEvidence,
     )
-
-    missing_certifications: list[str] = Field(
-        default_factory=list,
-        description="Required certifications not present.",
-    )
-
-    ###########################################################################
-    # Education Evidence
-    ###########################################################################
-
-    education_matches: list[str] = Field(
-        default_factory=list,
-        description="Relevant education matches.",
-    )
-
-    ###########################################################################
-    # Experience Evidence
-    ###########################################################################
-
-    relevant_experiences: list[str] = Field(
-        default_factory=list,
-        description="Relevant work experiences supporting the ranking.",
-    )
-
-    relevant_projects: list[str] = Field(
-        default_factory=list,
-        description="Projects supporting the ranking.",
-    )
-
-    ###########################################################################
-    # Explainability
-    ###########################################################################
-
-    strengths: list[str] = Field(
-        default_factory=list,
-        description="Candidate strengths identified during analysis.",
-    )
-
-    weaknesses: list[str] = Field(
-        default_factory=list,
-        description="Candidate weaknesses identified during analysis.",
-    )
-
-    risks: list[str] = Field(
-        default_factory=list,
-        description="Potential hiring risks.",
-    )
-
-    
-###############################################################################
-# END OF FILE
-###############################################################################

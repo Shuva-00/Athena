@@ -31,7 +31,7 @@ from src.core.candidate.languages import Language
 from src.core.candidate.signals import CandidateSignals
 from src.core.candidate.scores import CandidateScores
 from src.core.candidate.evidence import EvidenceCollection
-
+from src.core.candidate.features import CandidateFeatures
 
 class Candidate(AthenaModel):
     """
@@ -80,8 +80,12 @@ class Candidate(AthenaModel):
 
     signals: CandidateSignals | None = Field(
     default=None,
+    description="Candidate signals and inferred attributes.",)
+    
+    features: CandidateFeatures = Field(
+    default_factory=CandidateFeatures,
+    description="Normalized feature scores.",
 )
-
     scores: CandidateScores = Field(
         default_factory=CandidateScores,
         description="Candidate scores.",
