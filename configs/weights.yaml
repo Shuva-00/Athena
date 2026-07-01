@@ -1,0 +1,97 @@
+###############################################################################
+# Athena
+# Score Weights
+###############################################################################
+
+###############################################################################
+# Final Score Fusion
+###############################################################################
+
+fusion:
+
+  cross_encoder: 0.75
+
+  feature_score: 0.25
+
+###############################################################################
+# Feature Engineering
+###############################################################################
+
+feature_scoring:
+
+  skill:
+
+    matching: 0.45
+
+    confidence: 0.20
+
+    duration: 0.20
+    semantic: 0.00
+    endorsement: 0.15
+
+  experience:
+
+    relevance: 0.50
+
+    stability: 0.25
+    semantic: 0.00
+    leadership: 0.25
+
+  education:
+
+    degree: 0.35
+
+    cgpa: 0.20
+
+    institution: 0.15
+
+    research: 0.15
+
+    semantic: 0.00
+
+    confidence: 0.15
+
+
+  certification:
+
+    relevance: 0.70
+
+    recency: 0.30
+
+  signal:
+
+    responsiveness: 0.30
+
+    engagement: 0.30
+
+    assessment: 0.40
+
+  integrity:
+
+    consistency: 0.50
+
+    confidence: 0.50
+
+normalization:
+
+  duration_cap_months: 60
+
+  endorsement_cap: 20
+
+###############################################################################
+# Feature Fusion
+###############################################################################
+
+feature_fusion:
+
+  skill: 0.30
+
+  experience: 0.30
+
+  education: 0.15
+
+  certification: 0.10
+
+  signal: 0.10
+
+  integrity: 0.05

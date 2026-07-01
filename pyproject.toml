@@ -1,0 +1,71 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "athena"
+version = "0.1.0"
+description = "Production-inspired explainable hybrid AI system for candidate retrieval, semantic reranking, and evidence-based hiring recommendations."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+
+authors = [
+    { name = "Athena Team" }
+]
+
+keywords = [
+    "retrieval",
+    "ranking",
+    "llm",
+    "resume",
+    "hiring",
+    "bm25",
+    "faiss",
+    "sentence-transformers",
+    "cross-encoder",
+    "explainable-ai",
+]
+
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+dependencies = [
+    "numpy>=2.0",
+    "pandas>=2.2",
+    "pydantic>=2.7",
+    "pyyaml>=6.0",
+    "rank-bm25>=0.2.2",
+    "faiss-cpu>=1.8.0",
+    "sentence-transformers>=3.0",
+    "torch>=2.3",
+    "scikit-learn>=1.5",
+    "tqdm>=4.66",
+]
+
+[tool.setuptools]
+package-dir = {"" = "."}
+
+[tool.setuptools.packages.find]
+include = ["src*"]
+
+[tool.black]
+line-length = 79
+target-version = ["py311"]
+
+[tool.isort]
+profile = "black"
+line_length = 79
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+ignore_missing_imports = true
